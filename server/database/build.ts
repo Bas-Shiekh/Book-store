@@ -1,6 +1,5 @@
-/* eslint-disable no-console */
 import config from '../config/environment';
-import sequelize from './connection';
+import { sequelize } from '../models';
 
 const buildModels = async () => sequelize.sync({ force: true });
 
