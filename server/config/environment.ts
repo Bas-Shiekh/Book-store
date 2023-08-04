@@ -3,7 +3,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const {
-  NODE_ENV, PORT, DEV_DB_URL, DATABASE_URL, TEST_DB, SECRET_KEY,
+  NODE_ENV,
+  PORT,
+  DEV_DB_URL,
+  DATABASE_URL,
+  TEST_DB,
+  SECRET_KEY,
+  CLOUDINARY_NAME,
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET,
 } = process.env;
 
 let connectionString: string | undefined = '';
@@ -37,6 +45,9 @@ const config = {
   connectionString,
   ssl,
   secretKey: SECRET_KEY,
+  cloudinaryName: CLOUDINARY_NAME,
+  cloudinaryApiKey: CLOUDINARY_API_KEY,
+  cloudinaryApiSecret: CLOUDINARY_API_SECRET,
 };
 
 export default config;
