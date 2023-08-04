@@ -1,4 +1,4 @@
-import { registerInterface } from "../../interfaces/register";
+import { registerInterface } from "../../interfaces/auth";
 import { User } from "../../models";
 
 const registerQuery = ({
