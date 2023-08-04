@@ -1,6 +1,7 @@
 export interface PayloadInterface {
   id: number;
-  name: string;
-  role: string;
-  img: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  image: string;
 }

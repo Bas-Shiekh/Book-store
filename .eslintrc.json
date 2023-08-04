@@ -23,7 +23,10 @@
             "json": "always"
             }
         ],
-        "no-nested-ternary": "off"
+        "no-nested-ternary": "off",
+        "quotes":"off",
+        "object-curly-newline": "off",
+        "operator-linebreak": "off"
     },
     "settings": {
         "import/resolver": {

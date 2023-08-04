@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import http from 'http';
 import { join } from 'path';
 import express, { NextFunction, Request, Response } from 'express';
 import compression from 'compression';
@@ -8,6 +7,7 @@ import morgan from 'morgan';
 
 import router from './routers';
 import config from './config/environment';
+import { notFound, serverError } from './controllers/errors';
 
 const app = express();
 
@@ -29,13 +29,7 @@ if (config.nodeEnv === 'production') {
   });
 }
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json({ message: 'Not Found' });
-});
-
-// eslint-disable-next-line no-undef
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  res.status(err.status).json({ message: err.message });
-});
+app.use(serverError);
+app.use(notFound);
 
 export default app;
