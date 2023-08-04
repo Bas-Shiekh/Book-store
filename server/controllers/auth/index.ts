@@ -1,4 +1,4 @@
-import register from './register';
+import registerController from "./register";
+import loginController from './login';
 
-// eslint-disable-next-line import/prefer-default-export
-export { register };
+export { registerController, loginController };

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-import { registerInterface } from '../interfaces/register';
+import { registerInterface } from '../../interfaces/auth';
 
 const registerValidation = (body: registerInterface) => {
   const schema = Joi.object({
