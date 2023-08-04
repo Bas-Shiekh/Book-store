@@ -2,6 +2,7 @@ import {
   registerController,
   loginController,
   verifyMeController,
+  logoutController,
 } from "../controllers/auth";
 import { isAuth } from "../middlewares";
 import expressWrapper from "../utils/expressWrapper";
@@ -15,5 +16,6 @@ authRouter.get(
   expressWrapper(isAuth),
   expressWrapper(verifyMeController),
 );
+authRouter.post("/logout", logoutController);
 
 export default authRouter;
