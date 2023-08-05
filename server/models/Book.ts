@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../database/connection';
 
-const Book = sequelize.define('Book', {
+const Book = sequelize.define("Book", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -9,6 +9,7 @@ const Book = sequelize.define('Book', {
   },
   title: {
     type: DataTypes.STRING,
+    unique: true,
     allowNull: false,
   },
   description: {
@@ -23,7 +24,7 @@ const Book = sequelize.define('Book', {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  publisher: {
+  author: {
     type: DataTypes.STRING,
     allowNull: true,
   },
