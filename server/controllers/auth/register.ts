@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 import { hash } from "bcryptjs";
 import { registerValidation } from "../../validation/auth";
 import { registerQuery, findUserByEmailQuery } from "../../queries/auth";
-import CustomError from "../../utils/customError";
 import { signToken } from "../../utils/jwtServices";
 import { Message } from "../../config/messages";
+import { BadRequestException } from "../../utils/exceptions";
 
 const registerController = async (req: Request, res: Response) => {
   const { firstName, lastName, email, password, confirmationPassword } =
@@ -18,9 +18,9 @@ const registerController = async (req: Request, res: Response) => {
     confirmationPassword,
   });
 
-  const doesEmailExist = await findUserByEmailQuery(email);
-  if (doesEmailExist) {
-    throw new CustomError(400, "The email does already exist!");
+  const emailExist = await findUserByEmailQuery(email);
+  if (emailExist) {
+    throw new BadRequestException("The email does already exist!");
   }
 
   const hashedPassword = await hash(password, 12);
@@ -45,7 +45,6 @@ const registerController = async (req: Request, res: Response) => {
   res.cookie("token", token).status(201).json({
     data: payload,
     message: Message.REGISTER,
-    token,
   });
 };
 
