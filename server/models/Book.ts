@@ -16,6 +16,11 @@ const Book = sequelize.define("Book", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
+  price: {
+    type: DataTypes.DOUBLE,
+    allowNull: false,
+    defaultValue: 0,
+  },
   cover_image: {
     type: DataTypes.TEXT,
     allowNull: true,
