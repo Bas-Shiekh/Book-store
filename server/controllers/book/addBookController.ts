@@ -1,4 +1,3 @@
-/* eslint-disable dot-notation */
 import { Response } from "express";
 import { UserRequestInterface } from "../../interfaces/payload";
 import { addBookValidation } from "../../validation/book";

@@ -3,18 +3,20 @@ import { join } from "path";
 import express, { NextFunction, Request, Response } from "express";
 import compression from "compression";
 import cookieParser from "cookie-parser";
-import morgan from "morgan";
+import multer from "multer";
 
 import router from "./routers";
 import config from "./config/environment";
 
+const upload = multer();
+
 const app = express();
 
-app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(upload.any());
 app.disable("x-powered-by");
 
 app.use("/api/v1", router);
