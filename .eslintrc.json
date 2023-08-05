@@ -26,7 +26,8 @@
         "no-nested-ternary": "off",
         "quotes":"off",
         "object-curly-newline": "off",
-        "operator-linebreak": "off"
+        "operator-linebreak": "off",
+        "dot-notation": "off"
     },
     "settings": {
         "import/resolver": {
