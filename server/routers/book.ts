@@ -2,6 +2,7 @@ import {
   addBookController,
   deleteBookController,
   editBookController,
+  getBookController,
 } from "../controllers/book";
 import { isAuth } from "../middlewares";
 import expressWrapper from "../utils/expressWrapper";
@@ -13,6 +14,7 @@ bookRouter.post(
   expressWrapper(isAuth),
   expressWrapper(addBookController),
 );
+bookRouter.get("/:id", expressWrapper(isAuth), expressWrapper(getBookController));
 bookRouter.delete(
   "/:id",
   expressWrapper(isAuth),
