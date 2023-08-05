@@ -1,20 +1,20 @@
 import { Response, NextFunction } from "express";
 
-import CustomError from "../utils/customError";
 import { verifyToken } from "../utils/jwtServices";
 import {
   TokenPayloadInterface,
   UserRequestInterface,
 } from "../interfaces/payload";
+import { UnauthorizedException } from "../utils/exceptions";
 
 const isAuth = async (
   req: UserRequestInterface,
   res: Response,
   next: NextFunction,
 ) => {
-  const token = req.headers.authorization?.split(" ")[1];
+  const { token } = req.cookies;
   if (!token) {
-    throw new CustomError(401, "unauthorized");
+    throw new UnauthorizedException();
   }
 
   const verified: TokenPayloadInterface = await verifyToken(token);
