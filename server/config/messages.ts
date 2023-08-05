@@ -9,4 +9,5 @@ export enum Message {
   DELETE_FAILED = "Delete failed",
   DELETE_BOOK = "The book has been deleted successfully",
   CREATE_BOOK = "The book has been created successfully",
+  UPDATE_BOOK = "The book has been updated successfully",
 }

@@ -1,4 +1,8 @@
-import { addBookController, deleteBookController } from "../controllers/book";
+import {
+  addBookController,
+  deleteBookController,
+  editBookController,
+} from "../controllers/book";
 import { isAuth } from "../middlewares";
 import expressWrapper from "../utils/expressWrapper";
 
@@ -13,6 +17,11 @@ bookRouter.delete(
   "/:id",
   expressWrapper(isAuth),
   expressWrapper(deleteBookController),
+);
+bookRouter.put(
+  "/:id",
+  expressWrapper(isAuth),
+  expressWrapper(editBookController),
 );
 
 export default bookRouter;
