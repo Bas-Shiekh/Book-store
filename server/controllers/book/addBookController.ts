@@ -2,9 +2,8 @@
 import { Response } from "express";
 import { UserRequestInterface } from "../../interfaces/payload";
 import { addBookValidation } from "../../validation/book";
-import { addBookQuery } from "../../queries/books";
+import { addBookQuery, findBookByTitleQuery } from "../../queries/books";
 import { Message } from "../../config/messages";
-import findBookByTitleQuery from "../../queries/books/findBookByTitleQuery";
 import { BadRequestException } from "../../utils/exceptions";
 
 const addBookController = async (req: UserRequestInterface, res: Response) => {

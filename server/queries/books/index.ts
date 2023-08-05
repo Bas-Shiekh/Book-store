@@ -1,4 +1,5 @@
 import addBookQuery from './addBookQuery';
+import deleteBookQuery from './deleteBookQuery';
+import findBookByTitleQuery from './findBookByTitleQuery';
 
-// eslint-disable-next-line import/prefer-default-export
-export { addBookQuery };
+export { addBookQuery, findBookByTitleQuery, deleteBookQuery };
