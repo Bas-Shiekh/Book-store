@@ -33,7 +33,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  res.status(err.status).json({ message: err.message });
+  res.status(err.status).json({ message: err.message, status: err.status });
 });
 
 export default app;
