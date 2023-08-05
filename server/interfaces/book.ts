@@ -25,3 +25,10 @@ export interface AddBookQueryInterface {
   category?: string;
   user_id: number;
 }
+
+export interface FindBooksQueryInterface {
+  sort: string[] | undefined;
+  search: string | undefined;
+  category: string | undefined;
+  userId: number;
+}
