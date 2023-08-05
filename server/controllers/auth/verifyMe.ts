@@ -1,12 +1,12 @@
 import { Response } from 'express';
 import { UserRequestInterface } from "../../interfaces/payload";
 import { findUserByIdQuery } from "../../queries/auth";
-import CustomError from "../../utils/customError";
+import { UnauthorizedException } from '../../utils/exceptions';
 
 const verifyMeController = async (req: UserRequestInterface, res: Response) => {
   const { user } = req;
   const userData = await findUserByIdQuery(user.id);
-  if (!userData) throw new CustomError(401, "unauthorized");
+  if (!userData) throw new UnauthorizedException();
 
   const payload = {
     id: userData.getDataValue("id"),

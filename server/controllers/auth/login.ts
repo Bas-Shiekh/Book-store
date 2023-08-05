@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 import { compare } from "bcryptjs";
 import { loginValidation } from '../../validation/auth';
 import { findUserByEmailQuery } from '../../queries/auth';
-import CustomError from '../../utils/customError';
 import { signToken } from '../../utils/jwtServices';
 import { Message } from '../../config/messages';
+import { UnauthorizedException } from '../../utils/exceptions';
 
 const loginController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -13,7 +13,7 @@ const loginController = async (req: Request, res: Response) => {
   const loginData: any = await findUserByEmailQuery(email);
 
   if (!loginData) {
-    throw new CustomError(400, "Invalid data email or password");
+    throw new UnauthorizedException("Invalid data email or password");
   }
 
   const hashedPassword = await compare(
@@ -22,7 +22,7 @@ const loginController = async (req: Request, res: Response) => {
   );
 
   if (!hashedPassword) {
-    throw new CustomError(400, "Invalid data email or password");
+    throw new UnauthorizedException("Invalid data email or password");
   }
 
   const payload = {
@@ -38,7 +38,7 @@ const loginController = async (req: Request, res: Response) => {
   res.json(
     res
       .cookie("token", token, { httpOnly: true })
-      .json({ data: payload, message: Message.LOGIN, token }),
+      .json({ data: payload, message: Message.LOGIN }),
   );
 };
 
