@@ -6,7 +6,7 @@ class CustomError extends Error {
   constructor(status: number, message: string) {
     super();
     this.status = status || 500;
-    this.message = message || "Internal server error!!!";
+    this.message = this.status !== 500 ? message : "Internal server error!!!";
   }
 }
 

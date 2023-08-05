@@ -16,8 +16,8 @@ const expressWrapper =
       }
       next(
         new CustomError(
-          err.status || 500,
-          err.message || "Internal server error",
+          err.status,
+          err.message,
         ),
       );
     }
