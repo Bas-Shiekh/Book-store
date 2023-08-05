@@ -1,4 +1,4 @@
 import addBookController from './addBookController';
+import deleteBookController from "./deleteBookController";
 
-// eslint-disable-next-line import/prefer-default-export
-export { addBookController };
+export { addBookController, deleteBookController };
