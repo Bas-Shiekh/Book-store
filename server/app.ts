@@ -4,6 +4,7 @@ import express, { NextFunction, Request, Response } from "express";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import multer from "multer";
+import cors from "cors";
 
 import router from "./routers";
 import config from "./config/environment";
@@ -11,6 +12,13 @@ import config from "./config/environment";
 const upload = multer();
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:8080",
+    credentials: true,
+  }),
+);
 
 app.use(cookieParser());
 app.use(compression());
