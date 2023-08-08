@@ -35,11 +35,9 @@ const loginController = async (req: Request, res: Response) => {
 
   const token = await signToken(payload);
 
-  res.json(
-    res
-      .cookie("token", token, { httpOnly: true })
-      .json({ data: payload, message: Message.LOGIN }),
-  );
+  res
+    .cookie("token", token, { httpOnly: true })
+    .json({ data: payload, message: Message.LOGIN });
 };
 
 export default loginController;
