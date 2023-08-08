@@ -1,4 +1,4 @@
-# project
+# client-side
 
 ## Project setup
 ```
