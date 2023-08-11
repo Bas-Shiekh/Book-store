@@ -7,15 +7,14 @@ cloudinary.config({
   api_secret: config.cloudinaryApiSecret,
 });
 
-const uploadImageToCloudinary = async (imagePath: string) => {
+const uploadImageToCloudinary = async (base64Image: string) => {
   try {
-    const result = await cloudinary.uploader.upload(imagePath);
-    return {
-      public_id: result.public_id,
-      secure_url: result.secure_url,
-    };
+    const result = await cloudinary.uploader.upload(
+      `data:image/png;base64,${base64Image}`,
+    );
+    return result;
   } catch (error) {
-    throw new Error('Failed to upload image to Cloudinary.');
+    throw new Error("Failed to upload image to Cloudinary.");
   }
 };
 

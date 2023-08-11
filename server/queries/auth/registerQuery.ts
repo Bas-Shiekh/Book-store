@@ -6,11 +6,13 @@ const registerQuery = ({
   lastName,
   email,
   password,
+  image,
 }: registerInterface) => User.create({
   first_name: firstName,
   last_name: lastName,
   email,
   password,
+  image,
 });
 
 export default registerQuery;
