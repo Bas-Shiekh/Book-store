@@ -3,13 +3,10 @@ import { join } from "path";
 import express, { NextFunction, Request, Response } from "express";
 import compression from "compression";
 import cookieParser from "cookie-parser";
-import multer from "multer";
 import cors from "cors";
 
 import router from "./routers";
 import config from "./config/environment";
-
-const upload = multer();
 
 const app = express();
 
@@ -22,9 +19,8 @@ app.use(
 
 app.use(cookieParser());
 app.use(compression());
-app.use(express.json());
+app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: false }));
-app.use(upload.any());
 app.disable("x-powered-by");
 
 app.use("/api/v1", router);

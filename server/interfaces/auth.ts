@@ -4,6 +4,7 @@ export interface registerInterface {
   email: string
   password: string,
   confirmationPassword?: string,
+  image?: string;
 }
 
 export interface loginInterface {

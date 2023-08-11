@@ -5,9 +5,10 @@ import { registerQuery, findUserByEmailQuery } from "../../queries/auth";
 import { signToken } from "../../utils/jwtServices";
 import { Message } from "../../config/messages";
 import { BadRequestException } from "../../utils/exceptions";
+import uploadImageToCloudinary from "../../utils/uploadImage";
 
 const registerController = async (req: Request, res: Response) => {
-  const { firstName, lastName, email, password, confirmationPassword } =
+  const { firstName, lastName, email, password, confirmationPassword, image } =
     req.body;
 
   await registerValidation({
@@ -23,6 +24,12 @@ const registerController = async (req: Request, res: Response) => {
     throw new BadRequestException("The email does already exist!");
   }
 
+  const imageData = await uploadImageToCloudinary(image);
+
+  if (!imageData) {
+    throw new BadRequestException("Upload image issue");
+  }
+
   const hashedPassword = await hash(password, 12);
 
   const createdUser: any = await registerQuery({
@@ -30,6 +37,7 @@ const registerController = async (req: Request, res: Response) => {
     lastName,
     email,
     password: hashedPassword,
+    image: imageData.url,
   });
 
   const payload = {

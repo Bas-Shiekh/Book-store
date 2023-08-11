@@ -65,7 +65,7 @@
             required
           />
           <v-file-input
-            :rules="validation.imageRules"
+            @change="uploadFile"
             accept="image/png, image/jpeg, image/bmp"
             placeholder="Pick an avatar"
             prepend-icon="mdi-camera"
@@ -93,7 +93,8 @@ export default Vue.extend({
         password: null,
         confirmPassword: null,
         firstName: null,
-        lastName: null
+        lastName: null,
+        image: null
       },
       validation: {
         firstNameRules: [(v) => !!v || "First Name is required"],
@@ -107,12 +108,6 @@ export default Vue.extend({
           (v) => !!v || "confirm password is required",
           (v) => v === this.payload.password || "Passwords do not match",
         ],
-        imageRules: [
-          (value) =>
-            !value ||
-            value.size < 2000000 ||
-            "Avatar size should be less than 2 MB!",
-        ],
       },
       showPassword: false,
       errors: {},
@@ -123,7 +118,7 @@ export default Vue.extend({
     async submit() {
       if (this.$refs.form.validate()) {
         try {
-          console.log(this)
+          console.log(this.payload.image)
           const { data } = await Vue.axios.post("/auth/register", this.payload);
           this.$notify({
             title: "Success",
@@ -149,7 +144,19 @@ export default Vue.extend({
       if (this.$refs.emailForm.validate()) {
         this.e1++
       }
-    }
+    },
+    uploadFile(image) {
+      if (!image) {
+        return;
+      }
+      // Convert the selected file to Base64
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = () => {
+        const base64File = reader.result.split(',')[1];
+        this.payload.image = base64File
+      };
+    },
   },
 });
 </script>
