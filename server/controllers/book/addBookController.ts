@@ -4,9 +4,18 @@ import { addBookValidation } from "../../validation/book";
 import { addBookQuery, findBookByTitleQuery } from "../../queries/books";
 import { Message } from "../../config/messages";
 import { BadRequestException } from "../../utils/exceptions";
+import uploadImageToCloudinary from "../../utils/uploadImage";
 
 const addBookController = async (req: UserRequestInterface, res: Response) => {
-  const { title, description, publicationYear, author, category, price, image } = req.body;
+  const {
+    title,
+    description,
+    publicationYear,
+    author,
+    category,
+    price,
+    image,
+  } = req.body;
   const { id } = req.user;
 
   await addBookValidation({
@@ -31,7 +40,12 @@ const addBookController = async (req: UserRequestInterface, res: Response) => {
   if (publicationYear) book["publication_year"] = publicationYear;
   if (author) book["author"] = author;
   if (category) book["category"] = category;
-  if (image) book["cover_image"] = image;
+
+  if (image) {
+    const imageData = await uploadImageToCloudinary(image);
+    if (!imageData) throw new BadRequestException("Upload image issue");
+    if (imageData) book["cover_image"] = imageData.url;
+  }
 
   const bookData = await addBookQuery(book);
 
