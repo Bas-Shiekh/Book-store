@@ -4,7 +4,6 @@
       <slot></slot>
       <v-btn type="submit" color="primary">Submit</v-btn>
     </v-form>
-    <notifications position="top right" width="400px" classes="notification" />
   </div>
 </template>
 
@@ -20,8 +19,10 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.customFunction()
+      this.customFunction();
     },
   },
 };
 </script>
+
+<style></style>

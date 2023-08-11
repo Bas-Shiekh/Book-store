@@ -118,7 +118,6 @@ export default Vue.extend({
     async submit() {
       if (this.$refs.form.validate()) {
         try {
-          console.log(this.payload.image)
           const { data } = await Vue.axios.post("/auth/register", this.payload);
           this.$notify({
             title: "Success",
