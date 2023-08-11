@@ -24,6 +24,7 @@ export interface AddBookQueryInterface {
   author?: string;
   category?: string;
   user_id: number;
+  cover_image: string;
 }
 
 export interface FindBooksQueryInterface {
