@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>sdadsasdasda</h1>
+    <h1>شسيشسيشسيش</h1>
   </v-container>
 </template>
 
@@ -8,9 +8,9 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'Book',
+  name: 'book',
   mounted() {
-    Vue.axios.get("/books", { withCredentials: true })
+    Vue.axios.get("/books")
       .then((res) => console.log(res))
   },
 })
