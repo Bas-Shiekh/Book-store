@@ -1,6 +1,10 @@
 <template>
   <v-container dark>
     <v-row>
+      <v-col><h3>Books</h3></v-col>
+      <v-btn>Add Book</v-btn>
+    </v-row>
+    <v-row>
       <v-col cols="12" md="4">
         <v-text-field
           v-model="searchText"
