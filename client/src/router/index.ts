@@ -11,19 +11,26 @@ const routes: Array<RouteConfig> = [
     component: HomeView,
   },
   {
-    path: "/book",
-    name: "Book",
-    component: () => import("../components/Book.vue"),
-  },
-  {
     path: "/login",
-    name: "Login",
+    name: "login",
     component: () => import("../views/auth/Login.vue"),
   },
   {
     path: "/register",
-    name: "Register",
+    name: "register",
     component: () => import("../views/auth/Register.vue"),
+  },
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: () => import("../views/Dashboard/index.vue"),
+    children: [
+      {
+        path: "book",
+        name: "book",
+        component: () => import("../components/Book.vue"),
+      },
+    ],
   },
 ];
 
