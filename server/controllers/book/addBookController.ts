@@ -6,7 +6,7 @@ import { Message } from "../../config/messages";
 import { BadRequestException } from "../../utils/exceptions";
 
 const addBookController = async (req: UserRequestInterface, res: Response) => {
-  const { title, description, publicationYear, author, category, price } = req.body;
+  const { title, description, publicationYear, author, category, price, image } = req.body;
   const { id } = req.user;
 
   await addBookValidation({
@@ -31,6 +31,7 @@ const addBookController = async (req: UserRequestInterface, res: Response) => {
   if (publicationYear) book["publication_year"] = publicationYear;
   if (author) book["author"] = author;
   if (category) book["category"] = category;
+  if (image) book["cover_image"] = image;
 
   const bookData = await addBookQuery(book);
 

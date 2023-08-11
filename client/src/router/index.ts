@@ -28,7 +28,7 @@ const routes: Array<RouteConfig> = [
       {
         path: "book",
         name: "book",
-        component: () => import("../components/Book.vue"),
+        component: () => import("../views/Dashboard/Books.vue"),
       },
     ],
   },
