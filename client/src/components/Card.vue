@@ -1,13 +1,21 @@
 <template>
-    <v-card class="mx-auto card" @click="() => this.$router.push(`dashboard/${this.book.id}`)">
+  <v-card
+    class="mx-auto card"
+    @click="() => this.$router.push(`dashboard/${this.book.id}`)"
+  >
     <v-img v-bind:src="book.coverImage" height="200px" />
     <v-card-title> {{ book.title }} </v-card-title>
     <v-card-subtitle>
       {{ book.title.split(" ").slice(0, 6).join(" ") }}...
     </v-card-subtitle>
-      <v-chip outlined class="ma-2" color="green">
-        {{ book.category }}
-      </v-chip>
+    <div class="details">
+      <h3>Price: <p>{{ book.price }}$</p></h3>
+      <h3>Author: <p>{{ book.author }}</p></h3>
+      <h3>Publish Year: <p>{{ book.publicationYear }}</p></h3>
+    </div>
+    <v-chip outlined class="ma-2" color="green">
+      {{ book.category }}
+    </v-chip>
   </v-card>
 </template>
 
@@ -18,10 +26,10 @@ export default {
       type: Object,
     },
   },
-  data(){
+  data() {
     return {
-      dialog: false
-    }
+      dialog: false,
+    };
   },
 };
 </script>
@@ -33,5 +41,23 @@ export default {
 }
 .card:hover {
   transform: scale(1.1);
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  gap: 0.5rem;
+}
+.details .h3 {
+  font-size: 0.9rem;
+  color: #444444;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.details .h3 .p{
+  font-size: 0.9rem;
+  color: #666666;
+  margin: 0;
 }
 </style>

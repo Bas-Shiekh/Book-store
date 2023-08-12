@@ -59,14 +59,14 @@ export default Vue.extend({
       this.clearErrors();
       if (this.$refs.formRef.$refs.form.validate()) {
         try {
-          const { data } = await Vue.axios.post("/auth/login", {
+          const response = await Vue.axios.post("/auth/login", {
             email: this.email,
             password: this.password,
           });
-          this.$store.commit("setUser", data.data);
+          this.$store.commit("setUser", response.data.data);
           this.$notify({
             title: "Success",
-            text: data.message,
+            text: response.data.message,
             type: "success",
             ignoreDuplicates: true,
           });

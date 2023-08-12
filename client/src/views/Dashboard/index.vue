@@ -38,9 +38,14 @@ export default Vue.extend({
       this.drawer = !this.drawer
     }
   },
-  mounted() {
-    if (!this.$store.state.user) this.$router.push("/login")
-    else this.userData = this.$store.state.user
-  }
+  async mounted() {
+    try {
+      const { data } = await Vue.axios.get("/auth/users/me");
+      this.$store.commit("setUser", data.data);
+      this.userData = data.data
+    } catch (error) {
+      this.$router.push("/login")
+    }
+  },
 });
 </script>
