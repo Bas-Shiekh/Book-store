@@ -19,9 +19,9 @@
 - Vue router
 ## How to run the project 
 - Clone the project.
-- Create your database and the env file and add the required env varaibles.
+- Create your database and the env file inside the server folder and add the required env varaibles from .env.examlpe file.
 - cd server and then install the packeges using npm i
 - cd client and then install the packeges using npm i
 - run the migration command inside the server folder > cd server/ npm run migrate:up
 - run the server using this command npm run dev
-- run the client applicaiton using this command .
+- run the client applicaiton using this command.
