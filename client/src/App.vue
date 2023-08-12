@@ -16,14 +16,6 @@ export default Vue.extend({
       return this.$store.state.user;
     },
   },
-  async mounted() {
-    try {
-      const { data } = await Vue.axios.get("/auth/users/me");
-      this.$store.commit("setUser", data.data) ;
-    } catch (error) {
-      this.$router.push("/login")
-    }
-  },
 })
 </script>
 
