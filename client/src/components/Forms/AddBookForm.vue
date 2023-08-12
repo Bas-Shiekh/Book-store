@@ -1,90 +1,82 @@
 <template>
-  <custom-modal-app :toggleDialog="toggleDialog" :dialog="dialog">
-    <v-card :style="{ background: $vuetify.theme.themes.dark.background }">
-      <custom-form-app :customFunction="submit" ref="formRef">
-        <v-card-title>
-          <span class="text-h5">Add New Book</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12" sm="6" md="12">
-                <v-text-field
-                  v-model="payload.title"
-                  :rules="validation.titleRules"
-                  :error-messages="errors.title"
-                  label="Book Title"
-                  outlined
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="6">
-                <v-text-field
-                  v-model="payload.author"
-                  label="Author (Optional)"
-                  outlined
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="6">
-                <v-text-field
-                  v-model="payload.publicationYear"
-                  label="Publication Year (Optional)"
-                  outlined
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="6">
-                <v-text-field
-                  :rules="validation.priceRules"
-                  :error-messages="errors.price"
-                  v-model="payload.price"
-                  label="Price"
-                  type="number"
-                  outlined
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="6">
-                <v-select
-                  v-model="payload.category"
-                  :items="['action']"
-                  label="Category (Optional)"
-                  outlined
-                  clearable
-                  required
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="6" md="12">
-                <v-file-input
-                  @change="uploadFile"
-                  accept="image/png, image/jpeg, image/bmp"
-                  placeholder="Pick an avatar"
-                  prepend-icon="mdi-camera"
-                  label="Book Cover (Optional)"
-                  outlined
-                />
-              </v-col>
-              <v-col cols="12">
-                <v-textarea
-                  :rules="validation.descriptionRules"
-                  :error-messages="errors.description"
-                  v-model="payload.description"
-                  label="Book Description"
-                  outlined
-                ></v-textarea>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card-text>
-      </custom-form-app>
-    </v-card>
-  </custom-modal-app>
+  <custom-form-app :customFunction="submit" ref="formRef">
+    <v-card-text>
+      <v-container>
+        <v-row>
+          <v-col cols="12" sm="6" md="12">
+            <v-text-field
+              v-model="payload.title"
+              :rules="validation.titleRules"
+              :error-messages="errors.title"
+              label="Book Title"
+              outlined
+              required
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="6">
+            <v-text-field
+              v-model="payload.author"
+              label="Author (Optional)"
+              outlined
+              required
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="6">
+            <v-text-field
+              v-model="payload.publicationYear"
+              label="Publication Year (Optional)"
+              outlined
+              required
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="6">
+            <v-text-field
+              :rules="validation.priceRules"
+              :error-messages="errors.price"
+              v-model="payload.price"
+              label="Price"
+              type="number"
+              outlined
+              required
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="6">
+            <v-select
+              v-model="payload.category"
+              :items="['action']"
+              label="Category (Optional)"
+              outlined
+              clearable
+              required
+            ></v-select>
+          </v-col>
+          <v-col cols="12" sm="6" md="12">
+            <v-file-input
+              @change="uploadFile"
+              accept="image/png, image/jpeg, image/bmp"
+              placeholder="Pick an avatar"
+              prepend-icon="mdi-camera"
+              label="Book Cover (Optional)"
+              outlined
+            />
+          </v-col>
+          <v-col cols="12">
+            <v-textarea
+              :rules="validation.descriptionRules"
+              :error-messages="errors.description"
+              v-model="payload.description"
+              label="Book Description"
+              outlined
+            ></v-textarea>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card-text>
+  </custom-form-app>
 </template>
 
 <script>
 import Vue from "vue";
-import CustomModal from "../CustomModal.vue";
 import CustomForm from "./CustomForm.vue";
 
 export default {
@@ -97,7 +89,6 @@ export default {
     },
   },
   components: {
-    "custom-modal-app": CustomModal,
     "custom-form-app": CustomForm,
   },
   data: () => ({
@@ -123,16 +114,18 @@ export default {
       this.clearErrors();
       if (this.$refs.formRef.$refs.form.validate()) {
         try {
+          console.log("asdasdasd")
           const { data } = await Vue.axios.post("/books", this.payload);
+          console.log(data)
           this.$notify({
             title: "Success",
             text: data.message,
             type: "success",
             ignoreDuplicates: true,
           });
-          this.$store.commit("addBook", data.data)
-          this.toggleDialog(false);
+          this.$store.commit("addBook", data.data);
           this.clearPayload();
+          this.$router.push("/dashboard")
         } catch (error) {
           this.$notify({
             title: "Error!",

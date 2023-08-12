@@ -2,7 +2,7 @@
   <v-container dark>
     <v-row>
       <v-col><h3>Books</h3></v-col>
-      <v-btn @click="toggleDialog(true)">Add Book</v-btn>
+      <v-btn @click="() => $router.push('dashboard/add')">Add Book</v-btn>
     </v-row>
     <v-row>
       <v-col cols="12" md="4">
@@ -46,14 +46,12 @@
     <div class="card-container">
       <book-card-app v-for="book in $store.state.books" :key="book.id" :book="book"/>
     </div>
-    <add-book-form-app v-bind:toggleDialog="toggleDialog" v-bind:dialog="dialog"/>
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import BookCard from "@/components/Card.vue";
-import AddBookForm from '@/components/Forms/AddBookForm.vue'
 
 interface Book {
   id: number;
@@ -73,7 +71,6 @@ export default Vue.extend({
   name: "book",
   components: {
     "book-card-app": BookCard,
-    "add-book-form-app": AddBookForm,
   },
   data() {
     return {

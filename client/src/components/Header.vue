@@ -1,10 +1,7 @@
 <template>
   <v-container>
     <v-app-bar app dark color="#323850" flat>
-      <v-app-bar-nav-icon @click="$props.toggleDrawer" v-if="showMenuIcon">
-        <v-icon v-text="menuIcon"></v-icon>
-      </v-app-bar-nav-icon>
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <v-toolbar-title>Book Manage</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-list-item-avatar
         class="d-block text-center mx-auto border_img"
@@ -45,13 +42,5 @@ export default Vue.extend({
     }
   },
   name: 'Header',
-  data() {
-    return {
-      drawer: false,
-      showMenuIcon: true,
-      title: 'Book Manage',
-      menuIcon: "mdi-menu"
-    };
-  },
 })
 </script>
