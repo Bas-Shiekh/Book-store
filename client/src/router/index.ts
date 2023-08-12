@@ -31,8 +31,13 @@ const routes: Array<RouteConfig> = [
         component: () => import("../views/Dashboard/Books.vue"),
       },
       {
+        path: "add",
+        name: "add book",
+        component: () => import("../views/Dashboard/AddBook.vue"),
+      },
+      {
         path: ":id",
-        name: "bookDetails",
+        name: "book details",
         component: () => import("../views/Dashboard/BookDetails.vue"),
       },
     ],
