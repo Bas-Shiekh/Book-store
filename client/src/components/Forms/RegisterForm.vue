@@ -119,13 +119,14 @@ export default Vue.extend({
       if (this.$refs.form.validate()) {
         try {
           const { data } = await Vue.axios.post("/auth/register", this.payload);
+          this.$store.commit("setUser", data.data)
           this.$notify({
             title: "Success",
             text: data.message,
             type: "success",
             ignoreDuplicates: true,
           });
-          // this.$router.push('book');
+          this.$router.push('/dashboard');
         } catch (error) {
           this.$notify({
             title: "Error!",

@@ -7,5 +7,22 @@
   </v-app>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+  },
+  async mounted() {
+    try {
+      const { data } = await Vue.axios.get("/auth/users/me");
+      this.$store.commit("setUser", data.data) ;
+    } catch (error) {
+      this.$router.push("/login")
+    }
+  },
+})
 </script>

@@ -16,5 +16,10 @@ export default Vue.extend({
   components: {
     "register-form-app": RegisterForm,
   },
+  mounted() {
+    if (this.$store.state.user) {
+      this.$router.push('/dashboard')
+    }
+  }
 });
 </script>

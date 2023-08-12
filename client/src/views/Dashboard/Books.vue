@@ -114,23 +114,28 @@ export default Vue.extend({
               : ""
           }${this.searchText ? `&search=${this.searchText}` : ""}`
         );
-        this.books = data.data;
+        // this.books = data.data;
+        this.$store.commit("setBooks", data.data)
       } catch (error) {
         console.log(error);
       }
     },
     toggleDialog(isOpen: boolean) {
       this.dialog = isOpen
-    }
+    },
   },
-  async mounted() {
+  async beforeMount() {
     try {
       const { data } = await Vue.axios.get("/books");
-      console.log(data.data[0]);
+      console.log(data.data)
+      this.$store.commit("setBooks", data.data)
       this.books = data.data;
     } catch (error) {
       console.log(error);
     }
+  },
+  mounted() {
+    this.books = this.$store.state.books;
   },
 });
 </script>
