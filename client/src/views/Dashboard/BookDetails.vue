@@ -84,6 +84,7 @@ export default Vue.extend({
       try {
         const { data } = await Vue.axios.get(`/books/${this.bookId}`);
         this.book = data.data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         console.log(error.response.data.message);
       }
@@ -98,6 +99,7 @@ export default Vue.extend({
         });
         this.$store.commit("removeBookById", this.bookId)
         this.$router.push("/dashboard")
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         this.$notify({
           title: "Error!",
@@ -124,6 +126,7 @@ export default Vue.extend({
   height: 70vh;
   overflow: hidden;
   border-radius: 10px;
+  border: #e0e0e0 2px solid;
 }
 .image {
   width: 45%;
@@ -151,14 +154,14 @@ export default Vue.extend({
 }
 .details h3 {
   font-size: 1rem;
-  color: #eeeeee;
+  color: #222222;
   display: flex;
   gap: 0.4rem;
   align-items: center;
 }
 .details h3 p {
   font-weight: normal;
-  color: #cccccc;
+  color: #444444;
   margin: 0;
 }
 
@@ -169,7 +172,7 @@ export default Vue.extend({
   gap: 0.5rem;
 }
 .details .description p {
-  color: #cccccc;
+  color: #444444;
 }
 .book-actions {
   display: flex;

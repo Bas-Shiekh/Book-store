@@ -1,5 +1,5 @@
 <template>
-  <v-app :style="{ background: $vuetify.theme.themes.dark.background, color: $vuetify.theme.themes.dark.color }">
+  <v-app>
     <v-container>
       <header-dashboard-app
         v-bind:id="userData.id"
