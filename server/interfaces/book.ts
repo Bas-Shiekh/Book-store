@@ -14,6 +14,7 @@ export interface UpdateBookInterface {
   publication_year?: number;
   author?: string;
   category?: string;
+  cover_image?: string
 }
 
 export interface AddBookQueryInterface {

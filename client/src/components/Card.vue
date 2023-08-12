@@ -1,6 +1,6 @@
 <template>
     <v-card class="mx-auto card" @click="() => this.$router.push(`dashboard/${this.book.id}`)">
-    <v-img v-bind:src="book.cover_image" height="200px" />
+    <v-img v-bind:src="book.coverImage" height="200px" />
     <v-card-title> {{ book.title }} </v-card-title>
     <v-card-subtitle>
       {{ book.title.split(" ").slice(0, 6).join(" ") }}...

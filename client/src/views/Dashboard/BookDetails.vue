@@ -7,22 +7,23 @@
     </v-row>
     <edit-book-form-app v-if="isEdit === true"
       :title="book.title"
-      :publication_year="book.publication_year"
-      :cover_image="book.cover_image"
+      :publication_year="book.publicationYear"
+      :cover_image="book.coverImage"
       :category="book.category"
       :price="book.price"
       :author="book.author"
       :description="book.description"
+      :toggleIsEdit="toggleIsEdit"
     />
     <v-row v-if="isEdit === false">
       <section class="detail-container">
         <div class="image">
-          <img v-bind:src="book.cover_image" v-bind:alt="book.title" />
+          <img v-bind:src="book.coverImage" v-bind:alt="book.title" />
         </div>
         <div class="details">
           <div>
             <h1>{{ book.title }}</h1>
-            <h3>Published: <p>{{ book.publication_year }}</p></h3>
+            <h3>Published: <p>{{ book.publicationYear }}</p></h3>
             <h3>
               Category: <v-chip outlined color="green">
                 {{ book.category }}
@@ -53,12 +54,12 @@ import EditBookForm from '@/components/Forms/EditBookForm.vue'
 
 interface Book {
   id: number;
-  user_id: number;
+  userId: number;
   title: string;
   description: string;
   price: number;
-  cover_image: string;
-  publication_year: string;
+  coverImage: string;
+  publicationYear: string;
   author: string;
   category: string;
   createdAt: string;
@@ -110,6 +111,10 @@ export default Vue.extend({
     },
     toggleDialog(isOpen: boolean) {
       this.dialog = isOpen
+    },
+    toggleIsEdit(isEdit: boolean) {
+      this.isEdit = isEdit
+      this.getBookDetails()
     }
   },
   mounted() {
