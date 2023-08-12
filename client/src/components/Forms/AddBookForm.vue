@@ -130,6 +130,7 @@ export default {
             type: "success",
             ignoreDuplicates: true,
           });
+          this.$store.commit("addBook", data.data)
           this.toggleDialog(false);
           this.clearPayload();
         } catch (error) {

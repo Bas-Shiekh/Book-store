@@ -18,7 +18,7 @@
       <v-btn icon @click="performCustomAction" color="primary">
         <v-icon text="">mdi-pencil</v-icon>
       </v-btn>
-      <v-btn icon @click="performCustomAction" color="red">
+      <v-btn icon @click="deleteBook(book.id)" color="red">
         <v-icon>mdi-delete</v-icon>
       </v-btn>
       <div class="my-4 text-subtitle-1"></div>
@@ -27,6 +27,9 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import { mapState, mapMutations } from 'vuex';
+
 export default {
   props: {
     book: {
@@ -41,6 +44,29 @@ export default {
     performCustomAction() {
       console.log('Custom action "chevron-up" clicked');
     },
+    async deleteBook(id) {
+      try {
+        const { data } = await Vue.axios.delete(`/books/${id}`)
+        this.$notify({
+          title: "Success",
+          text: data.message,
+          type: "success",
+          ignoreDuplicates: true,
+        });
+        this.$store.commit("removeBookById", id)
+      } catch (error) {
+        this.$notify({
+          title: "Error!",
+          text: error.response.data.message,
+          type: "error",
+          ignoreDuplicates: true,
+        });
+      }
+    },
+    ...mapMutations(['removeBookById'])
+  },
+  computed: {
+    ...mapState(['books'])
   },
 };
 </script>

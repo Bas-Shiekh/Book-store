@@ -15,5 +15,10 @@ export default Vue.extend({
   components: {
     "login-form-app": LoginForm,
   },
+  mounted() {
+    if (this.$store.state.user) {
+      this.$router.push('/dashboard')
+    }
+  }
 });
 </script>

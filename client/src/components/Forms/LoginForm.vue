@@ -56,13 +56,14 @@ export default Vue.extend({
             email: this.email,
             password: this.password,
           });
+          this.$store.commit("setUser", data.data)
           this.$notify({
             title: "Success",
             text: data.message,
             type: "success",
             ignoreDuplicates: true,
           });
-          // this.$router.push('book');
+          this.$router.push('/dashboard');
         } catch (error) {
           this.$notify({
             title: "Error!",
