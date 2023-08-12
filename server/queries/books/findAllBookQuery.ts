@@ -13,7 +13,7 @@ const findAllBookQuery = ({
   };
 
   if (search) {
-    query.where.title = { [Op.like]: `%${search}%` };
+    query.where.title = { [Op.iLike]: `%${search}%` };
   }
 
   if (sort) {
