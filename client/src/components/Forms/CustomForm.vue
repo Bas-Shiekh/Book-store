@@ -2,7 +2,6 @@
   <div>
     <v-form ref="form" @submit.prevent="handleSubmit">
       <slot></slot>
-      <v-btn type="submit" color="primary">Submit</v-btn>
     </v-form>
   </div>
 </template>

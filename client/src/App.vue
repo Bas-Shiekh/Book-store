@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main>
+    <v-main class="main">
       <router-view />
       <notifications position="top right" width="400px" classes="notification" />
     </v-main>
@@ -26,3 +26,9 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style>
+.main {
+  background-color: #2A3243;
+}
+</style>
