@@ -5,8 +5,7 @@
           Do you want to delete book?
         </v-card-title>
         <v-card-text
-          >Let Google help apps determine location. This means sending anonymous
-          location data to Google, even when no apps are running.</v-card-text
+          >That will delete the book</v-card-text
         >
         <v-card-actions>
           <v-spacer></v-spacer>

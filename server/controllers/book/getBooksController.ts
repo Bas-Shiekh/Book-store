@@ -32,7 +32,23 @@ const getBooksController = async (req: UserRequestInterface, res: Response) => {
     userId: req.user.id,
   });
 
-  res.json({ data: books });
+  const payloadData = [
+    ...books.map((book) => ({
+      id: book.getDataValue("id"),
+      title: book.getDataValue("title"),
+      description: book.getDataValue("description"),
+      price: book.getDataValue("price"),
+      coverImage: book.getDataValue("cover_image"),
+      publicationYear: book.getDataValue("publication_year"),
+      author: book.getDataValue("author"),
+      category: book.getDataValue("category"),
+      createdAt: book.getDataValue("createdAt"),
+      updatedAt: book.getDataValue("updatedAt"),
+      userId: book.getDataValue("user_id"),
+    })),
+  ];
+
+  res.json({ data: payloadData });
 };
 
 export default getBooksController;

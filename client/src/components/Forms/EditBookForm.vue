@@ -1,9 +1,6 @@
 <template>
   <v-card :style="{ background: $vuetify.theme.themes.dark.background }">
     <custom-form-app :customFunction="submit" ref="formRef">
-      <v-card-title>
-        <span class="text-h5">Add New Book</span>
-      </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
@@ -55,6 +52,7 @@
               ></v-select>
             </v-col>
             <v-col cols="12" sm="6" md="12">
+              <img :src="image" :alt="payload.title" v-if="image"/>
               <v-file-input
                 @change="uploadFile"
                 accept="image/png, image/jpeg, image/bmp"
@@ -74,6 +72,7 @@
               ></v-textarea>
             </v-col>
           </v-row>
+          <v-btn type="submit" color="primary" class="submit">Submit</v-btn>
         </v-container>
       </v-card-text>
     </custom-form-app>
@@ -96,9 +95,11 @@ export default {
     "category",
     "cover_image",
     "author",
+    "toggleIsEdit"
   ],
   data() {
     return {
+      image: this.$props.cover_image,
       payload: {
         title: this.$props.title,
         description: this.$props.description,
@@ -106,7 +107,7 @@ export default {
         publicationYear: this.$props.publication_year,
         author: this.$props.author,
         category: this.$props.category,
-        image: this.$props.cover_image,
+        image: null
       },
       validation: {
         titleRules: [(v) => !!v || "Title is required"],
@@ -126,7 +127,6 @@ export default {
             `/books/${this.$route.params.id}`,
             this.payload
           );
-          console.log(data)
           this.$notify({
             title: "Success",
             text: data.message,
@@ -135,8 +135,8 @@ export default {
           });
           this.$store.commit("editBookById", data.data);
           this.clearPayload();
+          this.$props.toggleIsEdit(false)
         } catch (error) {
-          console.log(error)
           this.$notify({
             title: "Error!",
             text: error.response.data.message,
@@ -174,3 +174,22 @@ export default {
   },
 };
 </script>
+
+<style>
+.submit {
+  display: block;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: #4f46e5;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+</style>

@@ -56,8 +56,8 @@ interface Book {
   title: string;
   description: string;
   price: number;
-  cover_image: string;
-  publication_year: string;
+  coverImage: string;
+  publicationYear: string;
   author: string;
   category: string;
   createdAt: string;

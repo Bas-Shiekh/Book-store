@@ -49,7 +49,21 @@ const addBookController = async (req: UserRequestInterface, res: Response) => {
 
   const bookData = await addBookQuery(book);
 
-  res.json({ data: bookData, message: Message.CREATE_BOOK });
+  const payloadData = {
+    id: bookData.getDataValue("id"),
+    title: bookData.getDataValue("title"),
+    description: bookData.getDataValue("description"),
+    price: bookData.getDataValue("price"),
+    coverImage: bookData.getDataValue("cover_image"),
+    publicationYear: bookData.getDataValue("publication_year"),
+    author: bookData.getDataValue("author"),
+    category: bookData.getDataValue("category"),
+    createdAt: bookData.getDataValue("createdAt"),
+    updatedAt: bookData.getDataValue("updatedAt"),
+    userId: bookData.getDataValue("user_id"),
+  };
+
+  res.json({ data: payloadData, message: Message.CREATE_BOOK });
 };
 
 export default addBookController;
