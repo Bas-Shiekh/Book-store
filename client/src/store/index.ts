@@ -40,6 +40,9 @@ export default new Vuex.Store({
       const bookIndex = state.books.findIndex((book) => book.id === editedBook.id)
       state.books[bookIndex] = editedBook
     },
+    removeUser(state) {
+      state.user = null
+    }
   },
   actions: {},
   modules: {},

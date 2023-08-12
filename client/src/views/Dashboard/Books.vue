@@ -2,7 +2,7 @@
   <v-container dark>
     <v-row>
       <v-col><h3>Books</h3></v-col>
-      <v-btn @click="() => $router.push('dashboard/add')">Add Book</v-btn>
+      <v-btn @click="() => $router.push('dashboard/add')" color="primary">Add Book</v-btn>
     </v-row>
     <v-row>
       <v-col cols="12" md="4">
@@ -11,7 +11,6 @@
           label="Search"
           outlined
           @input="handleInput"
-          color="white"
         ></v-text-field>
       </v-col>
       <v-col>
@@ -22,7 +21,6 @@
           outlined
           clearable
           @change="fetchBooks"
-          color="white"
         ></v-select>
       </v-col>
       <v-col>
@@ -33,13 +31,12 @@
           outlined
           clearable
           @change="fetchBooks"
-          color="white"
         ></v-select>
       </v-col>
       <v-col>
         <v-radio-group v-model="sortAs" mandatory @change="fetchBooks">
-          <v-radio label="Ascending" value="asc" color="white"></v-radio>
-          <v-radio label="Descending" value="desc" color="white"></v-radio>
+          <v-radio label="Ascending" value="asc"></v-radio>
+          <v-radio label="Descending" value="desc"></v-radio>
         </v-radio-group>
       </v-col>
     </v-row>

@@ -1,5 +1,5 @@
 <template>
-  <custom-form-app :customFunction="submit" ref="formRef">
+  <custom-form-app :customFunction="submit" ref="formRef" class="form">
     <v-card-text>
       <v-container>
         <v-row>
@@ -69,6 +69,7 @@
               outlined
             ></v-textarea>
           </v-col>
+          <v-btn type="submit" color="primary" class="submit">Submit</v-btn>
         </v-row>
       </v-container>
     </v-card-text>
@@ -164,3 +165,25 @@ export default {
   },
 };
 </script>
+<style>
+.form {
+  border: #eeeeee 1px solid;
+  border-radius: 30px;
+}
+.submit {
+  display: block;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: #4f46e5;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+</style>
