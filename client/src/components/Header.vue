@@ -6,6 +6,12 @@
       </v-app-bar-nav-icon>
       <v-toolbar-title>{{ title }}</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-list-item-avatar
+        class="d-block text-center mx-auto border_img"
+        size="40"
+      >
+        <img v-bind:src="$props.image" v-bind:alt="$props.firstName" />
+      </v-list-item-avatar>
       <v-btn text small class="withoutupercase gray--text">
         Hi, {{ $props.firstName }}
         <v-icon small>mdi-chevron-down</v-icon>

@@ -9,16 +9,8 @@
 <script>
 export default {
   props: {
-    toggleDialog: {
-      type: Function,
-    },
     dialog: {
       type: Boolean,
-    },
-  },
-  methods: {
-    handleSubmit() {
-      this.customFunction();
     },
   },
 };
