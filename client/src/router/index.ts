@@ -26,9 +26,14 @@ const routes: Array<RouteConfig> = [
     component: () => import("../views/Dashboard/index.vue"),
     children: [
       {
-        path: "book",
+        path: "",
         name: "book",
         component: () => import("../views/Dashboard/Books.vue"),
+      },
+      {
+        path: ":id",
+        name: "bookDetails",
+        component: () => import("../views/Dashboard/BookDetails.vue"),
       },
     ],
   },

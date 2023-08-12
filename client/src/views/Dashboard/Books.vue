@@ -44,7 +44,7 @@
       </v-col>
     </v-row>
     <div class="card-container">
-      <book-card-app v-for="book in books" :key="book.id" :book="book" />
+      <book-card-app v-for="book in $store.state.books" :key="book.id" :book="book"/>
     </div>
     <add-book-form-app v-bind:toggleDialog="toggleDialog" v-bind:dialog="dialog"/>
   </v-container>
@@ -114,7 +114,7 @@ export default Vue.extend({
               : ""
           }${this.searchText ? `&search=${this.searchText}` : ""}`
         );
-        // this.books = data.data;
+        this.books = data.data;
         this.$store.commit("setBooks", data.data)
       } catch (error) {
         console.log(error);
@@ -133,9 +133,6 @@ export default Vue.extend({
     } catch (error) {
       console.log(error);
     }
-  },
-  mounted() {
-    this.books = this.$store.state.books;
   },
 });
 </script>

@@ -10,7 +10,8 @@ export default new Vuetify({
   theme: {
     themes: {
       dark: {
-        background: "#2A3243"
+        background: "#2A3243",
+        color: "white"
       }
     }
   }

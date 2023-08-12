@@ -22,8 +22,7 @@ export default new Vuex.Store({
     books: [] as Book[],
     user: null,
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
     setBooks(state, books) {
       state.books = books;
@@ -32,11 +31,15 @@ export default new Vuex.Store({
       state.user = user;
     },
     removeBookById(state, bookId) {
-      state.books = state.books.filter((book) => book.id !== bookId)
+      state.books = state.books.filter((book) => book.id !== bookId);
     },
     addBook(state, book) {
-      state.books = [...state.books, book]
-    }
+      state.books = [...state.books, book];
+    },
+    editBookById(state, editedBook) {
+      const bookIndex = state.books.findIndex((book) => book.id === editedBook.id)
+      state.books[bookIndex] = editedBook
+    },
   },
   actions: {},
   modules: {},
