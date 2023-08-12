@@ -44,7 +44,7 @@
             <v-col cols="12" sm="6" md="6">
               <v-select
                 v-model="payload.category"
-                :items="['action']"
+                :items="['fiction', 'romance', 'novel', 'mystery', 'autobiography', 'biography', 'children']"
                 label="Category (Optional)"
                 outlined
                 clearable
