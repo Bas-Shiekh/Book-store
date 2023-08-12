@@ -1,7 +1,13 @@
 <template>
-  <v-container fluid>
-    <register-form-app></register-form-app>
-    <notifications position="top right" width="400px" classes="notification" />
+  <v-container fluid class="page">
+    <div class="register-form">
+      <p class="form-title">Create new account</p>
+      <register-form-app></register-form-app>
+      <p class="signup-link">
+      Already have account?
+      <label @click="() => $router.push('/login')">login</label>
+    </p>
+    </div>
   </v-container>
 </template>
 
@@ -23,3 +29,23 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style>
+.page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 2rem;
+  width: 80%;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+</style>

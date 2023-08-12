@@ -1,13 +1,11 @@
 <template>
-  <v-form ref="form" @submit.prevent="submit">
-    <v-stepper v-model="e1">
-      <v-stepper-header>
+  <v-form ref="form" @submit.prevent="submit" class="signup-form">
+    <v-stepper v-model="e1" class="stepper">
+      <v-stepper-header class="stepper-header">
         <v-stepper-step :complete="e1 > 1" step="1">
           Email & password
         </v-stepper-step>
-
         <v-divider></v-divider>
-
         <v-stepper-step :complete="e1 > 2" step="2">
           Profile
         </v-stepper-step>
@@ -22,6 +20,7 @@
               :error-messages="errors.email"
               required
               clearable
+              outlined
             />
             <v-text-field
               v-model="payload.password"
@@ -34,6 +33,7 @@
               @click:append="showPassword = !showPassword"
               @input="setPassword($event)" 
               clearable
+              outlined
             />
             <v-text-field
               v-model="payload.confirmPassword"
@@ -45,17 +45,19 @@
               :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="showPassword = !showPassword"
               clearable
+              outlined
             />
           </v-form>
-          <v-btn color="primary" @click="stepping"> Next </v-btn>
+          <v-btn color="primary" @click="stepping" class="submit"> Next </v-btn>
         </v-stepper-content>
         <v-stepper-content step="2">
           <v-text-field
-          v-model="payload.firstName"
+            v-model="payload.firstName"
             label="First Name"
             :rules="validation.firstNameRules"
             :error-messages="errors.firstName"
             required
+            outlined
           />
           <v-text-field
             v-model="payload.lastName"
@@ -63,6 +65,7 @@
             :rules="validation.lastNameRules"
             :error-messages="errors.email"
             required
+            outlined
           />
           <v-file-input
             @change="uploadFile"
@@ -70,9 +73,12 @@
             placeholder="Pick an avatar"
             prepend-icon="mdi-camera"
             label="Avatar"
+            outlined
           />
-          <v-btn color="primary" @click="e1 = 1"> forward </v-btn>
-          <v-btn type="submit" color="primary">Register</v-btn>
+          <v-card-actions class="actions">
+            <v-btn color="primary" @click="e1 = 1" outlined class="forward"> forward </v-btn>
+            <v-btn type="submit" color="primary" class="submit">Register</v-btn>
+          </v-card-actions>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -160,3 +166,45 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style>
+.stepper-header {
+  box-shadow: none;
+  border: 2px solid #4f46e5;
+  border-radius: 10px;
+}
+.stepper {
+  box-shadow: none !important;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.actions .forward {
+  width: 50%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  margin: 0;
+}
+.actions .submit {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: #4f46e5;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  width: 50% !important;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  margin: 0;
+}
+</style>
